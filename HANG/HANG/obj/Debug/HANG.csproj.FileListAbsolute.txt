@@ -4,3 +4,9 @@ C:\Users\Patryk\source\repos\HANG\HANG\bin\Debug\HANG.exe
 C:\Users\Patryk\source\repos\HANG\HANG\bin\Debug\HANG.pdb
 C:\Users\Patryk\source\repos\HANG\HANG\obj\Debug\HANG.exe
 C:\Users\Patryk\source\repos\HANG\HANG\obj\Debug\HANG.pdb
+C:\Users\Patryk\Documents\Nowy folder\Projekt\HANG\HANG\bin\Debug\HANG.exe.config
+C:\Users\Patryk\Documents\Nowy folder\Projekt\HANG\HANG\bin\Debug\HANG.exe
+C:\Users\Patryk\Documents\Nowy folder\Projekt\HANG\HANG\bin\Debug\HANG.pdb
+C:\Users\Patryk\Documents\Nowy folder\Projekt\HANG\HANG\obj\Debug\HANG.csprojAssemblyReference.cache
+C:\Users\Patryk\Documents\Nowy folder\Projekt\HANG\HANG\obj\Debug\HANG.exe
+C:\Users\Patryk\Documents\Nowy folder\Projekt\HANG\HANG\obj\Debug\HANG.pdb

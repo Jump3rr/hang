@@ -26,7 +26,10 @@ namespace HANG
                         runda.Rozgrywka();
                         break;
                     /*case 2:
-                        myPhone.AddNewContact(ReadNewContact());
+                     
+                        break;
+                    case 3:
+
                         break;*/
                 }
             }

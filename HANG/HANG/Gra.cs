@@ -9,10 +9,10 @@ namespace HANG
 {
     public class Gra
     {
-        public int zycia = 7;
-        int sukces = 0;
         int bl;
         int sp;
+        int zycia = 7;
+        int sukces = 0;
         public static string slowo = "starocie";
         char[] litery = slowo.ToCharArray();
         char[] odpowiedz = { '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_' };
@@ -25,6 +25,8 @@ namespace HANG
 
         public void Rozgrywka()
         {
+            zycia = 7;
+            sukces = 0;
             for (int i = 0; i < litery.Length; i++)
             {
                 Console.Write("_ ");
@@ -76,8 +78,8 @@ namespace HANG
             {
                 Console.WriteLine("Gratulacje! Zgadłeś hasło!");
             }
-
-            //Console.WriteLine(odpowiedz);
+            Array.Clear(odpowiedz, 0, 12);
+            odpowiedz = new char[] { '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_' };
         }
     }
 }
