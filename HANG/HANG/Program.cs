@@ -25,10 +25,10 @@ namespace HANG
                     case 1:
                         runda.Rozgrywka();
                         break;
-                    /*case 2:
-                     
+                    case 2:
+                        runda.Zasady();
                         break;
-                    case 3:
+                    /*case 3:
 
                         break;*/
                 }

@@ -81,5 +81,19 @@ namespace HANG
             Array.Clear(odpowiedz, 0, 12);
             odpowiedz = new char[] { '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_' };
         }
+        public void Zasady()
+        {
+            Console.WriteLine("ZASADY GRY:");
+            Console.WriteLine(@"Po rozpoczęciu rozgrywki na ekranie pojawią się pauzy (''_'').");
+            Console.WriteLine("Każda pauza symbolizuje jedną literkę składającą się na losowy wyraz z polskiego słownika.");
+            Console.WriteLine("Hasła nie zawierają cyfr, znaków specjalnych oraz polskich znaków diakrytycznych!");
+            Console.WriteLine("Zadaniem gracza jest odgadnięcie hasła wpisując do konsoli pojedyncze litery.");
+            Console.WriteLine("Gracz na początku każdej rozgrywki ma 7 żyć.");
+            Console.WriteLine("Za każdym razem, gdy gracz wpisze literkę, która nie znajduje się w haśle traci jedno życie.");
+            Console.WriteLine("Gra kończy się na dwa sposoby - zwycięstwo gracza, lub jego przegrana.");
+            Console.WriteLine("Gracz przegrywa, gdy liczba jego żyć spadnie do zera.");
+            Console.WriteLine("Gracz wygrywa, gdy uda mu się odgadnąć hasło, zanim straci wszystkie życia.");
+            Console.WriteLine("POWODZENIA!");
+        }
     }
 }
