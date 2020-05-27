@@ -27,6 +27,7 @@ namespace HANG
         {
             var logFile = File.ReadAllLines(@"slowa.txt");                                              //wczytanie słownika
             var logList = new List<string>(logFile);                                                    //dodanie wszystkich słów do listy
+
             Random rnd = new Random();
                                                                                                         //losowanie słowa
             slowo = logList[rnd.Next(logList.Count())];
@@ -34,16 +35,19 @@ namespace HANG
 
             zycia = 7;
             sukces = 0;
+
             for (int i = 0; i < litery.Length; i++)                                                     //początkowe wyświetlenie pauz w miejscach liter
             {
                 Console.Write("_ ");
             }
+
             Console.WriteLine("");
+
             do
             {
-                string traf = Console.ReadLine();
                 bl = 0;
                 sp = 0;
+                string traf = Console.ReadLine();
                 char[] a = traf.ToCharArray();
                 for (int j = 0; j < litery.Length; j++)
                 {
@@ -61,11 +65,14 @@ namespace HANG
                         }
                     }
                 }
+
                 for (int b = 0; b < litery.Length; b++)                                                 //wypisanie aktualnego stanu (pauzy + litery już odgadnięte)
                 {
                     Console.Write(odpowiedz[b] + " ");
                 }
+
                 Console.WriteLine("");
+                
                 for (int y = 0; y < litery.Length; y++)                                                 //sprawdzenie czy gracz odgadł już wszystkie litery
                 {
                     if (odpowiedz[y] == litery[y])
@@ -81,15 +88,20 @@ namespace HANG
             {
                 Console.WriteLine("Przykro mi, przegrałeś! Hasło to: " + slowo);
             }
+
             if (sukces == 1)
             {
                 Console.WriteLine("Gratulacje! Zgadłeś hasło!");
             }
+
             Array.Clear(odpowiedz, 0, 12);                                                              //wyczyszczenie tablicy i przypisanie jej pauz na nowo w celu umożliwienia następnej rozgrywki
             odpowiedz = new char[] { '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_' };
         }
+
         public void Zasady()                                                                                        //wyświetlenie zasad
         {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine("ZASADY GRY:");
             Console.WriteLine(@"Po rozpoczęciu rozgrywki na ekranie pojawią się pauzy (''_'').");
             Console.WriteLine("Każda pauza symbolizuje jedną literkę składającą się na losowy wyraz z polskiego słownika.");
@@ -101,9 +113,14 @@ namespace HANG
             Console.WriteLine("Gracz przegrywa, gdy liczba jego żyć spadnie do zera.");
             Console.WriteLine("Gracz wygrywa, gdy uda mu się odgadnąć hasło, zanim straci wszystkie życia.");
             Console.WriteLine("POWODZENIA!");
+            Console.WriteLine("");
+            Console.ResetColor();
         }
+
         public void Informacje()                                                                                    //wyświetlenie informacji 
         {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("INFORMACJE O GRZE:");
             Console.WriteLine("Autor gry: Patryk Kamusiński");
             Console.WriteLine("Słownik do gry został pobrany ze strony: https://sjp.pl/slownik/growy/");
@@ -113,7 +130,8 @@ namespace HANG
             Console.WriteLine(@"   2. Usunąć wszystkie słowa, na które składa się mniej niż 8 liter");
             Console.WriteLine(@"   3. Usunąć wszystkie słowa, na które składa się więcej niż 12 liter");
             Console.WriteLine("Dokładna liczba słów możliwych do wylosowania wynosi: 808981");
-
+            Console.WriteLine("");
+            Console.ResetColor();
         }
     }
 }

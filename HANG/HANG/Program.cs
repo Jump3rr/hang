@@ -10,15 +10,22 @@ namespace HANG
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Witaj w grze Wisielec!");
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine("WITAJ W GRZE WISIELEC!");
+            Console.ResetColor();
+
             Gra runda = new Gra("123456789");
+
             do
             {
                 PrintActions();                                         //pętla kończąca się dopiero po wybraniu wyjścia przez użytkownika
+
                 int action = int.Parse(Console.ReadLine());
+
                 switch (action)                                         //wybór akcji
                 {
                     case 0:
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Wyłączanie aplikacji ...");  //wyjście
                         Environment.Exit(0);
                         break;
@@ -32,18 +39,20 @@ namespace HANG
                         runda.Informacje();                             //wyświetlenie informacji
                         break;
                 }
-            }
-            while (true);
+            } while (true);
 
         }
+
         private static void PrintActions()                              //wyświetlanie akcji do wyboru 
         {
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Wybierz co chcesz zrobić:");
             Console.WriteLine("1 - Graj");
             Console.WriteLine("2 - Zasady gry");
             Console.WriteLine("3 - Informacje");
             Console.WriteLine("0 - Wyjście");
             Console.Write("Wybierz: ");
+            Console.ResetColor();
         }
     }
 
