@@ -95,5 +95,18 @@ namespace HANG
             Console.WriteLine("Gracz wygrywa, gdy uda mu się odgadnąć hasło, zanim straci wszystkie życia.");
             Console.WriteLine("POWODZENIA!");
         }
+        public void Informacje()
+        {
+            Console.WriteLine("INFORMACJE O GRZE:");
+            Console.WriteLine("Autor gry: Patryk Kamusiński");
+            Console.WriteLine("Słownik do gry został pobrany ze strony: https://sjp.pl/slownik/growy/");
+            Console.WriteLine(@"W celu optymalizacji gry, zmniejszenia rozmiaru plików oraz ułatwienia rozgrywki autor postanowił:");
+            Console.WriteLine(@"   1. Zredukować liczbę wyrazów o wszystkie słowa zawierające polskie znaki diakrytyczne");
+            Console.WriteLine(@"         (ą, ć, ę, ł, ń, ó, ś, ź, ż)");
+            Console.WriteLine(@"   2. Usunąć wszystkie słowa, na które składa się mniej niż 8 liter");
+            Console.WriteLine(@"   3. Usunąć wszystkie słowa, na które składa się więcej niż 12 liter");
+            Console.WriteLine("Dokładna liczba słów możliwych do wylosowania wynosi: 808981");
+
+        }
     }
 }

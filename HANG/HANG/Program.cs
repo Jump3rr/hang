@@ -28,9 +28,9 @@ namespace HANG
                     case 2:
                         runda.Zasady();
                         break;
-                    /*case 3:
-
-                        break;*/
+                    case 3:
+                        runda.Informacje();
+                        break;
                 }
             }
             while (true);
