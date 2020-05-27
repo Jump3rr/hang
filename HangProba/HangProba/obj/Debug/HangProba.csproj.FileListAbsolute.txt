@@ -1,0 +1,6 @@
+C:\Users\Patryk\source\repos\HangProba\HangProba\bin\Debug\HangProba.exe.config
+C:\Users\Patryk\source\repos\HangProba\HangProba\bin\Debug\HangProba.exe
+C:\Users\Patryk\source\repos\HangProba\HangProba\bin\Debug\HangProba.pdb
+C:\Users\Patryk\source\repos\HangProba\HangProba\obj\Debug\HangProba.csprojAssemblyReference.cache
+C:\Users\Patryk\source\repos\HangProba\HangProba\obj\Debug\HangProba.exe
+C:\Users\Patryk\source\repos\HangProba\HangProba\obj\Debug\HangProba.pdb
