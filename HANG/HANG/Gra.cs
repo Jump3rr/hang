@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HANG;
+using System.IO;
 
 namespace HANG
 {
@@ -13,8 +14,8 @@ namespace HANG
         int sp;
         int zycia = 7;
         int sukces = 0;
-        public static string slowo = "starocie";
-        char[] litery = slowo.ToCharArray();
+        public static string slowo;
+        //char[] litery = slowo.ToCharArray();
         char[] odpowiedz = { '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_' };
         private string v;
 
@@ -25,6 +26,13 @@ namespace HANG
 
         public void Rozgrywka()
         {
+            var logFile = File.ReadAllLines(@"slowa.txt");
+            var logList = new List<string>(logFile);
+            Random rnd = new Random();
+
+            slowo = logList[rnd.Next(logList.Count())];
+            char[] litery = slowo.ToCharArray();
+
             zycia = 7;
             sukces = 0;
             for (int i = 0; i < litery.Length; i++)
@@ -72,7 +80,7 @@ namespace HANG
 
             if (zycia == 0)
             {
-                Console.WriteLine("Przykro mi, przegrałeś!");
+                Console.WriteLine("Przykro mi, przegrałeś! Hasło to: " + slowo);
             }
             if (sukces == 1)
             {
