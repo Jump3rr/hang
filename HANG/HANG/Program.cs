@@ -14,29 +14,29 @@ namespace HANG
             Gra runda = new Gra("123456789");
             do
             {
-                PrintActions();
+                PrintActions();                                         //pętla kończąca się dopiero po wybraniu wyjścia przez użytkownika
                 int action = int.Parse(Console.ReadLine());
-                switch (action)
+                switch (action)                                         //wybór akcji
                 {
                     case 0:
-                        Console.WriteLine("Wyłączanie aplikacji ...");
+                        Console.WriteLine("Wyłączanie aplikacji ...");  //wyjście
                         Environment.Exit(0);
                         break;
                     case 1:
-                        runda.Rozgrywka();
+                        runda.Rozgrywka();                              //właściwa rozgrywka
                         break;
                     case 2:
-                        runda.Zasady();
+                        runda.Zasady();                                 //wyświetlenie zasad
                         break;
                     case 3:
-                        runda.Informacje();
+                        runda.Informacje();                             //wyświetlenie informacji
                         break;
                 }
             }
             while (true);
 
         }
-        private static void PrintActions()
+        private static void PrintActions()                              //wyświetlanie akcji do wyboru 
         {
             Console.WriteLine("Wybierz co chcesz zrobić:");
             Console.WriteLine("1 - Graj");

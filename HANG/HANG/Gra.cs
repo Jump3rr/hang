@@ -10,12 +10,11 @@ namespace HANG
 {
     public class Gra
     {
-        int bl;
+        int bl;                                                                                                     //deklaracje
         int sp;
         int zycia = 7;
         int sukces = 0;
         public static string slowo;
-        //char[] litery = slowo.ToCharArray();
         char[] odpowiedz = { '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_' };
         private string v;
 
@@ -26,16 +25,16 @@ namespace HANG
 
         public void Rozgrywka()
         {
-            var logFile = File.ReadAllLines(@"slowa.txt");
-            var logList = new List<string>(logFile);
+            var logFile = File.ReadAllLines(@"slowa.txt");                                              //wczytanie słownika
+            var logList = new List<string>(logFile);                                                    //dodanie wszystkich słów do listy
             Random rnd = new Random();
-
+                                                                                                        //losowanie słowa
             slowo = logList[rnd.Next(logList.Count())];
             char[] litery = slowo.ToCharArray();
 
             zycia = 7;
             sukces = 0;
-            for (int i = 0; i < litery.Length; i++)
+            for (int i = 0; i < litery.Length; i++)                                                     //początkowe wyświetlenie pauz w miejscach liter
             {
                 Console.Write("_ ");
             }
@@ -48,31 +47,31 @@ namespace HANG
                 char[] a = traf.ToCharArray();
                 for (int j = 0; j < litery.Length; j++)
                 {
-                    if (litery[j] == a[0])
+                    if (litery[j] == a[0])                                                              //sprawdzenie czy wpisana litera zgadza się z literą w wylosowanym słowie
                     {
-                        odpowiedz[j] = a[0];
+                        odpowiedz[j] = a[0];                                                            //przypisanie prawidłowej litery zamiast pauzy
                     }
                     else
                     {
-                        bl = bl + 1;
+                        bl = bl + 1;                                                                    //sprawdzanie czy wpisana litera pojawia się w wyrazie przynajmiej raz
                         if (bl == litery.Length)
                         {
-                            zycia = zycia - 1;
+                            zycia = zycia - 1;                                                                  //jeśli nie ma danej litery w wyrazie - odejmuje życie
                             Console.WriteLine("Hasło nie zawiera tej literki. Pozostałe życia: " + zycia);
                         }
                     }
                 }
-                for (int b = 0; b < litery.Length; b++)
+                for (int b = 0; b < litery.Length; b++)                                                 //wypisanie aktualnego stanu (pauzy + litery już odgadnięte)
                 {
                     Console.Write(odpowiedz[b] + " ");
                 }
                 Console.WriteLine("");
-                for (int y = 0; y < litery.Length; y++)
+                for (int y = 0; y < litery.Length; y++)                                                 //sprawdzenie czy gracz odgadł już wszystkie litery
                 {
                     if (odpowiedz[y] == litery[y])
                     {
-                        sp = sp + 1;
-                        if (sp == litery.Length)
+                        sp = sp + 1;                                                                    //policzenie ile liter się zgadza
+                        if (sp == litery.Length)                                                        //sprawdzenie czy liczba odgadniętych liter jest równa liczbie liter w haśle
                             sukces = 1;
                     }
                 }
@@ -86,10 +85,10 @@ namespace HANG
             {
                 Console.WriteLine("Gratulacje! Zgadłeś hasło!");
             }
-            Array.Clear(odpowiedz, 0, 12);
+            Array.Clear(odpowiedz, 0, 12);                                                              //wyczyszczenie tablicy i przypisanie jej pauz na nowo w celu umożliwienia następnej rozgrywki
             odpowiedz = new char[] { '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_' };
         }
-        public void Zasady()
+        public void Zasady()                                                                                        //wyświetlenie zasad
         {
             Console.WriteLine("ZASADY GRY:");
             Console.WriteLine(@"Po rozpoczęciu rozgrywki na ekranie pojawią się pauzy (''_'').");
@@ -103,7 +102,7 @@ namespace HANG
             Console.WriteLine("Gracz wygrywa, gdy uda mu się odgadnąć hasło, zanim straci wszystkie życia.");
             Console.WriteLine("POWODZENIA!");
         }
-        public void Informacje()
+        public void Informacje()                                                                                    //wyświetlenie informacji 
         {
             Console.WriteLine("INFORMACJE O GRZE:");
             Console.WriteLine("Autor gry: Patryk Kamusiński");
