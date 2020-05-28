@@ -39,6 +39,7 @@ namespace HANG
                         runda.Informacje();                             //wyświetlenie informacji
                         break;
                 }
+                
             } while (true);
 
         }
