@@ -13,7 +13,7 @@ namespace HANG
     {
         int bl;                                                                                                     //deklaracje
         int sp;
-        int zycia = 7;
+        int zycia;
         int sukces = 0;
         public static string slowo;
         char[] odpowiedz = { '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_' };
@@ -29,6 +29,26 @@ namespace HANG
         {
             Console.Clear();
 
+            WyborPoziomu();
+            int wybor = int.Parse(Console.ReadLine());
+            switch(wybor)
+            {
+                case 1:
+                    zycia = (int)poziom.Easy;
+                    break;
+                case 2:
+                    zycia = (int)poziom.Medium;
+                    break;
+                case 3:
+                    zycia = (int)poziom.Hard;
+                    break;
+                default:
+                    zycia = (int)poziom.Medium;
+                    break;
+            }
+            Console.Clear();
+
+
             var logFile = File.ReadAllLines(@"slowa.txt");                                              //wczytanie słownika
             var logList = new List<string>(logFile);                                                    //dodanie wszystkich słów do listy
 
@@ -37,7 +57,7 @@ namespace HANG
             slowo = logList[rnd.Next(logList.Count())];
             char[] litery = slowo.ToCharArray();
 
-            zycia = 7;
+            //zycia = 7;
             sukces = 0;
 
             for (int i = 0; i < litery.Length; i++)                                                     //początkowe wyświetlenie pauz w miejscach liter
@@ -158,6 +178,23 @@ namespace HANG
             Console.WriteLine(@"   3. Usunąć wszystkie słowa, na które składa się więcej niż 12 liter");
             Console.WriteLine("Dokładna liczba słów możliwych do wylosowania wynosi: 808981");
             Console.WriteLine("");
+            Console.ResetColor();
+        }
+
+        enum poziom
+        {
+            Easy = 10,
+            Medium = 8,
+            Hard = 6
+        }
+        private static void WyborPoziomu()
+        {
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("Wybierz poziom trudności:");
+            Console.WriteLine("1 - Łatwy");
+            Console.WriteLine("2 - Średni");
+            Console.WriteLine("3 - Trudny");
+            Console.Write("Wybierz: ");
             Console.ResetColor();
         }
     }
