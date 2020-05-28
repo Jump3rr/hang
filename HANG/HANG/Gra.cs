@@ -30,23 +30,11 @@ namespace HANG
             Console.Clear();
 
             WyborPoziomu();
+
             int wybor = int.Parse(Console.ReadLine());
 
-            switch(wybor)
-            {
-                case 1:
-                    zycia = (int)poziom.Easy;
-                    break;
-                case 2:
-                    zycia = (int)poziom.Medium;
-                    break;
-                case 3:
-                    zycia = (int)poziom.Hard;
-                    break;
-                default:
-                    zycia = (int)poziom.Medium;
-                    break;
-            }
+            PoziomTrudnosci(wybor);
+
             Console.Clear();
 
 
@@ -67,6 +55,48 @@ namespace HANG
 
             Console.WriteLine("");
 
+            Petla(litery);
+
+            if (zycia == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Przykro mi, przegrałeś! Hasło to: " + slowo);
+                Console.ResetColor();
+            }
+
+            if (sukces == 1)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Gratulacje! Zgadłeś hasło!");
+                Console.ResetColor();
+            }
+
+            wpisane.Clear();
+            Array.Clear(odpowiedz, 0, 12);                                                              //wyczyszczenie tablicy i przypisanie jej pauz na nowo w celu umożliwienia następnej rozgrywki
+            odpowiedz = new char[] { '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_' };
+        }
+
+        private void PoziomTrudnosci(int wybor)
+        {
+            switch (wybor)
+            {
+                case 1:
+                    zycia = (int)poziom.Easy;
+                    break;
+                case 2:
+                    zycia = (int)poziom.Medium;
+                    break;
+                case 3:
+                    zycia = (int)poziom.Hard;
+                    break;
+                default:
+                    zycia = (int)poziom.Medium;
+                    break;
+            }
+        }
+
+        private void Petla(char[] litery)
+        {
             do
             {
                 bl = 0;
@@ -82,22 +112,7 @@ namespace HANG
                         wpisane.Add(' ');
                         Console.Clear();
 
-                        for (int j = 0; j < litery.Length; j++)
-                        {
-                            if (litery[j] == a[0])                                                              //sprawdzenie czy wpisana litera zgadza się z literą w wylosowanym słowie
-                            {
-                                odpowiedz[j] = a[0];                                                            //przypisanie prawidłowej litery zamiast pauzy
-                            }
-                            else
-                            {
-                                bl = bl + 1;                                                                    //sprawdzanie czy wpisana litera pojawia się w wyrazie przynajmiej raz
-                                if (bl == litery.Length)
-                                {
-                                    zycia = zycia - 1;
-                                    Console.WriteLine("Hasło nie zawiera tej literki. Pozostałe życia: " + zycia);
-                                }
-                            }
-                        }
+                        PetlaSprawdzajaca(litery, a);
 
                     }
                     else
@@ -132,24 +147,26 @@ namespace HANG
                 Console.WriteLine(" ");
 
             } while (zycia > 0 && sukces == 0);
+        }
 
-            if (zycia == 0)
+        private void PetlaSprawdzajaca(char[] litery, char[] a)
+        {
+            for (int j = 0; j < litery.Length; j++)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Przykro mi, przegrałeś! Hasło to: " + slowo);
-                Console.ResetColor();
+                if (litery[j] == a[0])                                                              //sprawdzenie czy wpisana litera zgadza się z literą w wylosowanym słowie
+                {
+                    odpowiedz[j] = a[0];                                                            //przypisanie prawidłowej litery zamiast pauzy
+                }
+                else
+                {
+                    bl = bl + 1;                                                                    //sprawdzanie czy wpisana litera pojawia się w wyrazie przynajmiej raz
+                    if (bl == litery.Length)
+                    {
+                        zycia = zycia - 1;
+                        Console.WriteLine("Hasło nie zawiera tej literki. Pozostałe życia: " + zycia);
+                    }
+                }
             }
-
-            if (sukces == 1)
-            {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Gratulacje! Zgadłeś hasło!");
-                Console.ResetColor();
-            }
-
-            wpisane.Clear();
-            Array.Clear(odpowiedz, 0, 12);                                                              //wyczyszczenie tablicy i przypisanie jej pauz na nowo w celu umożliwienia następnej rozgrywki
-            odpowiedz = new char[] { '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_' };
         }
 
         public void Zasady()
