@@ -11,14 +11,14 @@ namespace HANG
 {
     public class Gra
     {
-        int bl;                                                                                                     //deklaracje
+        int bl;
         int sp;
         int zycia;
         int sukces = 0;
         public static string slowo;
         char[] odpowiedz = { '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_' };
         List<char> wpisane = new List<char>();
-        private string v;
+        private readonly string v;
 
         public Gra(string v)
         {
@@ -31,6 +31,7 @@ namespace HANG
 
             WyborPoziomu();
             int wybor = int.Parse(Console.ReadLine());
+
             switch(wybor)
             {
                 case 1:
@@ -53,11 +54,10 @@ namespace HANG
             var logList = new List<string>(logFile);                                                    //dodanie wszystkich słów do listy
 
             Random rnd = new Random();
-            //losowanie słowa
             slowo = logList[rnd.Next(logList.Count())];
+
             char[] litery = slowo.ToCharArray();
 
-            //zycia = 7;
             sukces = 0;
 
             for (int i = 0; i < litery.Length; i++)                                                     //początkowe wyświetlenie pauz w miejscach liter
@@ -69,48 +69,54 @@ namespace HANG
 
             do
             {
-                int iloscWpisanych = 0;
                 bl = 0;
                 sp = 0;
                 string traf = Console.ReadLine().ToLower();
                 char[] a = traf.ToCharArray();
-
-                if (char.IsLetter(a[0]))
+                if (a.Length == 1)
                 {
-                    wpisane.Add(a[0]);
-                    wpisane.Add(',');
-                    wpisane.Add(' ');
-                    Console.Clear();
-
-                    for (int j = 0; j < litery.Length; j++)
+                    if (char.IsLetter(a[0]))
                     {
-                        if (litery[j] == a[0])                                                              //sprawdzenie czy wpisana litera zgadza się z literą w wylosowanym słowie
+                        wpisane.Add(a[0]);
+                        wpisane.Add(',');
+                        wpisane.Add(' ');
+                        Console.Clear();
+
+                        for (int j = 0; j < litery.Length; j++)
                         {
-                            odpowiedz[j] = a[0];                                                            //przypisanie prawidłowej litery zamiast pauzy
-                        }
-                        else
-                        {
-                            bl = bl + 1;                                                                    //sprawdzanie czy wpisana litera pojawia się w wyrazie przynajmiej raz
-                            if (bl == litery.Length)
+                            if (litery[j] == a[0])                                                              //sprawdzenie czy wpisana litera zgadza się z literą w wylosowanym słowie
                             {
-                                zycia = zycia - 1;                                                                  //jeśli nie ma danej litery w wyrazie - odejmuje życie
-                                Console.WriteLine("Hasło nie zawiera tej literki. Pozostałe życia: " + zycia);
+                                odpowiedz[j] = a[0];                                                            //przypisanie prawidłowej litery zamiast pauzy
+                            }
+                            else
+                            {
+                                bl = bl + 1;                                                                    //sprawdzanie czy wpisana litera pojawia się w wyrazie przynajmiej raz
+                                if (bl == litery.Length)
+                                {
+                                    zycia = zycia - 1;
+                                    Console.WriteLine("Hasło nie zawiera tej literki. Pozostałe życia: " + zycia);
+                                }
                             }
                         }
+
                     }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Hasło zawiera tylko litery!");
+                    }
+
                 }
                 else
                 {
                     Console.Clear();
-                    Console.WriteLine("Miały być tylko litery!");
+                    Console.WriteLine("Musisz wpisać jedną literę!");
                 }
 
                 for (int b = 0; b < litery.Length; b++)                                                 //wypisanie aktualnego stanu (pauzy + litery już odgadnięte)
                 {
                     Console.Write(odpowiedz[b] + " ");
                 }
-
-                    //Console.WriteLine("");
 
                 for (int y = 0; y < litery.Length; y++)                                                 //sprawdzenie czy gracz odgadł już wszystkie litery
                 {
@@ -121,9 +127,9 @@ namespace HANG
                             sukces = 1;
                     }
                 }
-                    Console.Write("              Użyte litery: ");
-                    wpisane.ForEach(Console.Write);
-                    Console.WriteLine(" ");
+                Console.Write("              Użyte litery: ");
+                wpisane.ForEach(Console.Write);
+                Console.WriteLine(" ");
 
             } while (zycia > 0 && sukces == 0);
 
@@ -140,12 +146,13 @@ namespace HANG
                 Console.WriteLine("Gratulacje! Zgadłeś hasło!");
                 Console.ResetColor();
             }
+
             wpisane.Clear();
             Array.Clear(odpowiedz, 0, 12);                                                              //wyczyszczenie tablicy i przypisanie jej pauz na nowo w celu umożliwienia następnej rozgrywki
             odpowiedz = new char[] { '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_', '_' };
         }
 
-        public void Zasady()                                                                                        //wyświetlenie zasad
+        public void Zasady()
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.DarkYellow;
@@ -154,7 +161,9 @@ namespace HANG
             Console.WriteLine("Każda pauza symbolizuje jedną literkę składającą się na losowy wyraz z polskiego słownika.");
             Console.WriteLine("Hasła nie zawierają cyfr, znaków specjalnych oraz polskich znaków diakrytycznych!");
             Console.WriteLine("Zadaniem gracza jest odgadnięcie hasła wpisując do konsoli pojedyncze litery.");
-            Console.WriteLine("Gracz na początku każdej rozgrywki ma 7 żyć.");
+            Console.WriteLine("Gracz na początku każdej rozgrywki ma określoną liczbę żyć.");
+            Console.WriteLine("Liczba żyć zależna jest od wybranego poziomu trudności.");
+            Console.WriteLine("Łatwy - 10 żyć, Średni - 8 żyć, Trudny - 6 żyć");
             Console.WriteLine("Za każdym razem, gdy gracz wpisze literkę, która nie znajduje się w haśle traci jedno życie.");
             Console.WriteLine("Gra kończy się na dwa sposoby - zwycięstwo gracza, lub jego przegrana.");
             Console.WriteLine("Gracz przegrywa, gdy liczba jego żyć spadnie do zera.");
@@ -164,7 +173,7 @@ namespace HANG
             Console.ResetColor();
         }
 
-        public void Informacje()                                                                                    //wyświetlenie informacji 
+        public void Informacje()
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -187,6 +196,7 @@ namespace HANG
             Medium = 8,
             Hard = 6
         }
+
         private static void WyborPoziomu()
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
@@ -197,5 +207,6 @@ namespace HANG
             Console.Write("Wybierz: ");
             Console.ResetColor();
         }
+
     }
 }

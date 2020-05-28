@@ -22,11 +22,11 @@ namespace HANG
 
                 int action = int.Parse(Console.ReadLine());
 
-                switch (action)                                         //wybór akcji
+                switch (action)
                 {
                     case 0:
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Wyłączanie aplikacji ...");  //wyjście
+                        Console.WriteLine("Wyłączanie aplikacji ...");
                         Environment.Exit(0);
                         break;
                     case 1:
@@ -44,7 +44,7 @@ namespace HANG
 
         }
 
-        private static void PrintActions()                              //wyświetlanie akcji do wyboru 
+        private static void PrintActions()
         {
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("Wybierz co chcesz zrobić:");
